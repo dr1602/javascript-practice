@@ -11,33 +11,58 @@ const shoppingCartContainer = document.querySelector("#shoppingCartContainer");
 
 const cardsContainer = document.querySelector(".cards-container");
 
+const productDetailContainer = document.querySelector('#productDetail');
+const productDetailCloseIcon = document.querySelector('.product-detail-close');
+
 navEmail.addEventListener("click",toggleDesktopMenu);
 menuIcon.addEventListener("click",toggleMobileMenu);
 shoppingCart.addEventListener("click",toggleProductDetail);
+productDetailCloseIcon.addEventListener('click',closeProductDetailAside);
 
 //enable & disable desktop menu while also desibling the other menus
 function toggleDesktopMenu() {
     console.log("click");
     desktopMenu.classList.toggle("inactive");
-    productDetail.classList.add("inactive");
+    shoppingCartContainer.classList.add("inactive");
+    productDetailContainer.classList.add('inactive')
 }
 
 //enable & disable mobile menu while also desibling the other menus
-function toggleMobileMenu() {
+function toggleMobileMenu() {0
     console.log("click");
     mobileMenu.classList.toggle("inactive");
-    productDetail.classList.add("inactive");
+    shoppingCartContainer.classList.add("inactive");
+    productDetailContainer.classList.add('inactive')
 }
 
 //enable & disable product detail while also desibling the other menus
 function toggleProductDetail() {
     console.log("click");
-    productDetail.classList.toggle("inactive");
+    shoppingCartContainer.classList.toggle("inactive");
     desktopMenu.classList.add("inactive");
     mobileMenu.classList.add("inactive");
+    productDetailContainer.classList.add('inactive')
+}
+
+//opens and close the product detail with a click
+function openProductDetailaside() {
+    console.log("click");
+    productDetailContainer.classList.toggle('inactive')
+    desktopMenu.classList.add("inactive");
+    mobileMenu.classList.add("inactive");
+    shoppingCartContainer.classList.add("inactive");
 }
 
 console.log("JS funcionando");
+
+//closes the product detail with a click
+function closeProductDetailAside() {
+    console.log("click");
+    productDetailContainer.classList.add('inactive')
+}
+
+console.log("JS funcionando");
+
 
 // allows the input of new products and its characteristics
 
@@ -94,7 +119,8 @@ function renderProducts(arr) {
         // product ={name, price, image} -> product.image
         const productImg = document.createElement('img');
         productImg.setAttribute('src',product.image);
-    
+        productImg.addEventListener('click',openProductDetailaside);
+
         const productInfo = document.createElement('div');
         productInfo.classList.add('product-info');
     
